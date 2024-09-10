@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "esnext",
+    "target": "es5",
+    "jsx": "react",
+    "moduleResolution": "node",
+    "types": ["jest", "node"]
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["dist"]
+}
