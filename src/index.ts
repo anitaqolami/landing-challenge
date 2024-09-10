@@ -23,7 +23,11 @@ button.classList.add(
   "shadow"
 );
 
-let dataRemote: { latitude: number; longitude: number } = null;
+let dataRemote: {
+  latitude: number;
+  longitude: number;
+  weatherData: { [key: string]: any };
+} = null;
 
 button.addEventListener("click", () => {
   if (!isMounted) {
@@ -46,7 +50,16 @@ button.addEventListener("click", () => {
     button.innerText = "Load The Weather App";
     const stateContainer = document.getElementById("landing-container-id");
     if (stateContainer) {
-      stateContainer.innerText = `Jump to Landing App. Lat: ${dataRemote.latitude}, Lon: ${dataRemote.longitude}`;
+      stateContainer.innerHTML = `
+        <div class="pb-5">Jump to Landing App</div>
+        <div>Lat: <strong>${dataRemote.latitude}</strong></div>
+        <div>Lon: <strong>${dataRemote.longitude}</strong></div>
+        <div>City: <strong>${dataRemote?.weatherData?.name}</strong></div>
+        <div>Statue Weather: <strong>${dataRemote?.weatherData?.weather[0]?.main}</strong></div>
+        <div>Temperature: <strong>${dataRemote?.weatherData?.main?.temp}</strong></div>
+        <div>Maximum Temperature: <strong>${dataRemote?.weatherData?.main?.temp_max}</strong></div>
+        <div>Minimum Temperature: <strong>${dataRemote?.weatherData?.main?.temp_min}</strong></div>
+      `;
     }
   }
 });
